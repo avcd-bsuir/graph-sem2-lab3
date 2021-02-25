@@ -30,6 +30,7 @@ class Engine {
         ~Engine();
 
         bool shouldExit();
+        void shutdown();
 
         bool pollEvent(SDL_Event * event);
 

@@ -40,6 +40,10 @@ bool Engine::shouldExit() {
     return this->should_exit;
 }
 
+void Engine::shutdown() {
+    this->should_exit = true;
+}
+
 bool Engine::pollEvent(SDL_Event * event) {
     if (SDL_PollEvent(&this->event) == 0)
         return false;
