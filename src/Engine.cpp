@@ -1,5 +1,9 @@
 #include "Engine.hpp"
 
+Color operator * (float other, const Color & self) {
+    return self * other;
+}
+
 Engine::Engine(std::string window_title, int width, int height, Color clear_color) : width(width), height(height), clear_color(clear_color), window(nullptr), renderer(nullptr), texture(nullptr), surface(nullptr), should_exit(false) {
     log("Engine", "Initializing SDL");
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -57,7 +61,8 @@ bool Engine::pollEvent(SDL_Event * event) {
 
 void Engine::setPixel(int x, int y, Color pixel) {
     if (x < 0 || y < 0 || x >= this->width || y >= this->height)
-        throwError("OutOfRangeError", "Coordinates are out of range");
+        return;
+        // throwError("OutOfRangeError", "Coordinates are out of range");
     ((Color *)surface->pixels)[x + y * surface->w] = pixel;
 }
 
