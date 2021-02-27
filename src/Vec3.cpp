@@ -1,5 +1,8 @@
 #include "Vec3.hpp"
 
+Vec3::Vec3() : x(0), y(0), z(0) {
+}
+
 Vec3::Vec3(double x, double y, double z) : x(x), y(y), z(z) {
 }
 
@@ -93,4 +96,15 @@ Vec3 operator /= (Vec3 & first, const float second) {
 
 double distance(Vec3 first, Vec3 second) {
     return std::sqrt(std::pow(first.x - second.x, 2) + std::pow(first.y - second.y, 2) + std::pow(first.z - second.z, 2));
+}
+
+bool lineIntersection(Vec3 a1, Vec3 a2, Vec3 b1, Vec3 b2, Vec3 & pos) {
+    double d = (a2.x - a1.x) * (b1.y - b2.y) - (b1.x - b2.x) * (a2.y - a1.y);
+    if (d == 0)
+        return false;
+    double t = ((b1.x - a1.x) * (b1.y - b2.y) - (b1.x - b2.x) * (b1.y - a1.y)) / d,
+           u = ((a2.x - a1.x) * (b1.y - a1.y) - (b1.x - a1.x) * (a2.y - a1.y)) / d;
+    pos = lerp(a1, a2, t);
+    if (u < 0 || u > 1 || t < 0 || t > 1) return false;
+    return true;
 }

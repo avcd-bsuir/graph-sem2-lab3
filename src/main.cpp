@@ -13,7 +13,8 @@
 
 #include "Color.hpp"
 #include "Engine.hpp"
-#include "MakeString.hpp"
+// #include "MakeString.hpp"
+#include "Mat3.hpp"
 #include "primitives.hpp"
 #include "utils.hpp"
 #include "Vec3.hpp"
@@ -22,7 +23,7 @@
 #define HEIGHT 720
 
 int main(int argc, char* args[]) {
-    Engine engine("Template", WIDTH, HEIGHT, Color(0, 0, 0));
+    Engine engine("Template", WIDTH, HEIGHT, Color(0x0));
 
     while (!engine.shouldExit()) {
         SDL_Event event;
@@ -36,9 +37,6 @@ int main(int argc, char* args[]) {
         }
 
         engine.clear();
-
-        // Draw loop code here
-        drawLine(&engine, 0, 0, WIDTH, HEIGHT, Color(0xFFFFFF));
 
         engine.draw();
         SDL_Delay(16);

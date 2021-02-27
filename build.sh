@@ -9,7 +9,7 @@ fi
 [ ! -d build ] && mkdir build
 
 main_should_recompile="False"
-total=6
+total=7
 current=1
 
 start=$(date '+%s')
@@ -72,6 +72,16 @@ then
 fi
 
 recompile="False"
+printHeader src/Mat3.cpp
+checkRecomp src/Mat3.cpp build/src/Mat3.hash build/src/ build/src/Mat3.o 
+if [ $recompile == "True" ]
+then
+    g++ -c -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/Mat3.cpp -o build/src/Mat3.o 
+    checkSuccess build/src/Mat3.o build/src/Mat3.hash
+    echo "$(md5sum src/Mat3.cpp)" > build/src/Mat3.hash
+fi
+
+recompile="False"
 printHeader src/primitives.cpp
 checkRecomp src/primitives.cpp build/src/primitives.hash build/src/ build/src/primitives.o 
 if [ $recompile == "True" ]
@@ -107,7 +117,7 @@ checkRecomp src/main.cpp build/src/main.hash build/src/ build/src/main.out
 if [ $recompile == "True" ] || [ $main_should_recompile == "True" ]
 then
     printf -- "..... \e[38;05;3;49;04;27mmain.cpp\e[0m \e[38;05;10;49;24;27mis updating, because other files have changed\e[0m\n"
-    g++ -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/main.cpp -o build/src/main.out build/src/Color.o build/src/Engine.o build/src/primitives.o build/src/utils.o build/src/Vec3.o -lpthread -lSDL2main -lSDL2
+    g++ -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/main.cpp -o build/src/main.out build/src/Color.o build/src/Engine.o build/src/Mat3.o build/src/primitives.o build/src/utils.o build/src/Vec3.o -lpthread -lSDL2main -lSDL2
     checkSuccess build/src/main.out build/src/main.hash
     echo "$(md5sum src/main.cpp)" > build/src/main.hash
 fi

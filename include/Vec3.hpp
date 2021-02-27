@@ -2,11 +2,13 @@
 #define VEC3_HPP
 
 #include <cmath>
+#include "utils.hpp"
 
 class Vec3 {
     public:
         double x, y, z;
 
+        Vec3();
         Vec3(double, double, double);
         ~Vec3();
 
@@ -36,5 +38,6 @@ Vec3 operator /= (Vec3 & first, const float second);
 
 // Other
 double distance(Vec3 first, Vec3 second);
+bool lineIntersection(Vec3 a1, Vec3 a2, Vec3 b1, Vec3 b2, Vec3 & pos);
 
 #endif

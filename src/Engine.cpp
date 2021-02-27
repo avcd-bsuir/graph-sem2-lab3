@@ -76,5 +76,5 @@ void Engine::draw() {
 
 void Engine::clear() {
     SDL_RenderClear(this->renderer);
-    SDL_FillRect(this->surface, NULL, this->clear_color.a << 24 | this->clear_color.r << 16 | this->clear_color.g >> 8 | this->clear_color.b);
+    SDL_FillRect(this->surface, NULL, this->clear_color.a << 24 | this->clear_color.r << 16 | this->clear_color.g << 8 | this->clear_color.b);
 }
