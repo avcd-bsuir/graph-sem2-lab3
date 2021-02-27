@@ -3,27 +3,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "Color.hpp"
 #include "utils.hpp"
-
-struct Color {
-    uint8_t b, g, r, a;
-    Color() : r(0), g(0), b(0), a(255) {}
-    Color(uint32_t c) : r((c & 0x00FF0000) >> 16), g((c & 0x0000FF00) >> 8), b((c & 0x000000FF)), a((c & 0xFF000000) >> 24) {}
-    Color(uint8_t r, uint8_t g, uint8_t b) : r(r), g(g), b(b), a(255) {}
-    Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) : r(r), g(g), b(b), a(a) {}
-
-    bool operator == (const Color & other) const {
-        return (this->r == other.r && this->g == other.g && this->b == other.b && this->a == other.a);
-    }
-    Color operator + (const Color & other) const {
-        return Color(this->r + other.r, this->g + other.g, this->b + other.b, this->a + other.a);
-    }
-    Color operator * (const float other) const {
-        return Color(this->r * other, this->g * other, this->b * other, this->a * other);
-    }
-};
-
-Color operator * (float other, const Color & self);
 
 class Engine {
     private:
@@ -44,7 +25,7 @@ class Engine {
         bool shouldExit();
         void shutdown();
 
-        bool pollEvent(SDL_Event * event);
+        bool pollEvent(SDL_Event *);
 
         void setPixel(int, int, Color);
         Color getPixel(int, int);

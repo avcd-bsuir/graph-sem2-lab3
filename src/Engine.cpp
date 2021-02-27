@@ -1,9 +1,5 @@
 #include "Engine.hpp"
 
-Color operator * (float other, const Color & self) {
-    return self * other;
-}
-
 Engine::Engine(std::string window_title, int width, int height, Color clear_color) : width(width), height(height), clear_color(clear_color), window(nullptr), renderer(nullptr), texture(nullptr), surface(nullptr), should_exit(false) {
     log("Engine", "Initializing SDL");
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
