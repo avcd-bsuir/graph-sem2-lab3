@@ -57,7 +57,8 @@ bool Engine::pollEvent(SDL_Event * event) {
 
 void Engine::setPixel(int x, int y, Color pixel) {
     if (x < 0 || y < 0 || x >= this->width || y >= this->height)
-        throwError("OutOfRangeError", "Coordinates are out of range");
+        return;
+        // throwError("OutOfRangeError", "Coordinates are out of range");
     ((Color *)surface->pixels)[x + y * surface->w] = pixel;
 }
 

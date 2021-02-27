@@ -8,10 +8,15 @@
  * 25 feb 2020
  */
 
+#include <cmath>
 #include <iostream>
 
+#include "Color.hpp"
 #include "Engine.hpp"
 #include "MakeString.hpp"
+#include "primitives.hpp"
+#include "utils.hpp"
+#include "Vec3.hpp"
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -33,8 +38,10 @@ int main(int argc, char* args[]) {
         engine.clear();
 
         // Draw loop code here
+        drawLine(&engine, 0, 0, WIDTH, HEIGHT, Color(0xFFFFFF));
 
         engine.draw();
+        SDL_Delay(16);
     }
     return 0;
 }

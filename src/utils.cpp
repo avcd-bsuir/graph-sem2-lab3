@@ -11,3 +11,9 @@ void throwError(std::string type, std::string details) {
     std::cout << "error: " << type << ": " << details << "\n";
     exit(-1);
 }
+
+// This function really should be here, but C++ standart no longer supports "export" keyword, that was supposed to export instantiable.
+// template<typename T>
+// T lerp(T a, T b, float u) {
+//     return (1.0f - u) * a + u * b;
+// }

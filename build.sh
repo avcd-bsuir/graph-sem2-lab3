@@ -9,7 +9,7 @@ fi
 [ ! -d build ] && mkdir build
 
 main_should_recompile="False"
-total=3
+total=6
 current=1
 
 start=$(date '+%s')
@@ -52,6 +52,16 @@ printf -- "\e[38;05;2;49;24;27m--\e[0m \e[38;05;2;49;04;27mStarting build proces
 printf -- "\e[38;05;2;49;24;27m-- Compiler: \e[0m \e[38;05;3;49;04;27mg++\e[0m\n\n"
 
 recompile="False"
+printHeader src/Color.cpp
+checkRecomp src/Color.cpp build/src/Color.hash build/src/ build/src/Color.o 
+if [ $recompile == "True" ]
+then
+    g++ -c -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/Color.cpp -o build/src/Color.o 
+    checkSuccess build/src/Color.o build/src/Color.hash
+    echo "$(md5sum src/Color.cpp)" > build/src/Color.hash
+fi
+
+recompile="False"
 printHeader src/Engine.cpp
 checkRecomp src/Engine.cpp build/src/Engine.hash build/src/ build/src/Engine.o 
 if [ $recompile == "True" ]
@@ -59,6 +69,16 @@ then
     g++ -c -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/Engine.cpp -o build/src/Engine.o 
     checkSuccess build/src/Engine.o build/src/Engine.hash
     echo "$(md5sum src/Engine.cpp)" > build/src/Engine.hash
+fi
+
+recompile="False"
+printHeader src/primitives.cpp
+checkRecomp src/primitives.cpp build/src/primitives.hash build/src/ build/src/primitives.o 
+if [ $recompile == "True" ]
+then
+    g++ -c -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/primitives.cpp -o build/src/primitives.o 
+    checkSuccess build/src/primitives.o build/src/primitives.hash
+    echo "$(md5sum src/primitives.cpp)" > build/src/primitives.hash
 fi
 
 recompile="False"
@@ -72,12 +92,22 @@ then
 fi
 
 recompile="False"
+printHeader src/Vec3.cpp
+checkRecomp src/Vec3.cpp build/src/Vec3.hash build/src/ build/src/Vec3.o 
+if [ $recompile == "True" ]
+then
+    g++ -c -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/Vec3.cpp -o build/src/Vec3.o 
+    checkSuccess build/src/Vec3.o build/src/Vec3.hash
+    echo "$(md5sum src/Vec3.cpp)" > build/src/Vec3.hash
+fi
+
+recompile="False"
 printHeader src/main.cpp
 checkRecomp src/main.cpp build/src/main.hash build/src/ build/src/main.out
 if [ $recompile == "True" ] || [ $main_should_recompile == "True" ]
 then
     printf -- "..... \e[38;05;3;49;04;27mmain.cpp\e[0m \e[38;05;10;49;24;27mis updating, because other files have changed\e[0m\n"
-    g++ -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/main.cpp -o build/src/main.out build/src/Engine.o build/src/utils.o -lpthread -lSDL2main -lSDL2
+    g++ -std=c++17 -static-libstdc++ -static-libgcc -I"include/" -I"third-party/toolbox/" -L"lib/" src/main.cpp -o build/src/main.out build/src/Color.o build/src/Engine.o build/src/primitives.o build/src/utils.o build/src/Vec3.o -lpthread -lSDL2main -lSDL2
     checkSuccess build/src/main.out build/src/main.hash
     echo "$(md5sum src/main.cpp)" > build/src/main.hash
 fi
