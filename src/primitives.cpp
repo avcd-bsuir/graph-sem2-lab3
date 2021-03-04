@@ -9,3 +9,7 @@ void drawLine(Engine * engine, double x1, double y1, double x2, double y2, Color
 void drawLine(Engine * engine, double x1, double y1, double x2, double y2, Color c) {
     drawLine(engine, x1, y1, x2, y2, c, c);
 }
+
+void drawLine(Engine * engine, Vec3 a, Vec3 b, Color c) {
+    drawLine(engine, a.x, a.y, b.x, b.y, c, c);
+}

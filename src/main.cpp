@@ -36,6 +36,9 @@ int main(int argc, char* args[]) {
 
     Mat3 scale(3.0f, 3.0f, 3.0f);
 
+    Vec3 u(WIDTH, -HEIGHT, 0);
+    u = u.normalized();
+
     for (int i = 0; i < pts.size(); i++)
         pts[i] = scale * pts[i];
 
@@ -54,6 +57,8 @@ int main(int argc, char* args[]) {
 
         for (int i = 0; i < pts.size() - 1; i++)
             drawLine(&engine, pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y, Color(255, 255, 255));
+
+        // drawLine(&engine, Vec3(0, HEIGHT, 0), Vec3(0, HEIGHT, 0) + u, Color(0xFFFFFF));
 
         engine.draw();
         SDL_Delay(16);
