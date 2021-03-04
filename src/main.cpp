@@ -26,7 +26,18 @@
 int main(int argc, char* args[]) {
     Engine engine("Template", WIDTH, HEIGHT, Color(0x0));
 
-    std::vector<Vec3> pts;
+    std::vector<Vec3> pts = {
+        Vec3(10, 10, 0),
+        Vec3(110, 10, 0),
+        Vec3(160, 110, 0),
+        Vec3(60, 110, 0),
+        Vec3(10, 10, 0),
+    };
+
+    Mat3 scale(3.0f, 3.0f, 3.0f);
+
+    for (int i = 0; i < pts.size(); i++)
+        pts[i] = scale * pts[i];
 
     while (!engine.shouldExit()) {
         SDL_Event event;
@@ -41,19 +52,8 @@ int main(int argc, char* args[]) {
 
         engine.clear();
 
-        // bool clr = false;
-        // for (int x = 0; x < WIDTH; x++) {
-        //     for (int y = 0; y < HEIGHT; y++) {
-        //         if (clr) {
-        //             clr = !clr;
-        //             engine.setPixel(x, y, Color(0, 0, 0));
-        //         } else {
-        //             clr = !clr;
-        //             engine.setPixel(x, y, Color(255, 255, 255));
-        //         }
-        //     }
-        //     clr = !clr;
-        // }
+        for (int i = 0; i < pts.size() - 1; i++)
+            drawLine(&engine, pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y, Color(255, 255, 255));
 
         engine.draw();
         SDL_Delay(16);
