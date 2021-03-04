@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <vector>
 
 #include "Color.hpp"
 #include "Engine.hpp"
@@ -24,6 +25,8 @@
 
 int main(int argc, char* args[]) {
     Engine engine("Template", WIDTH, HEIGHT, Color(0x0));
+
+    std::vector<Vec3> pts;
 
     while (!engine.shouldExit()) {
         SDL_Event event;

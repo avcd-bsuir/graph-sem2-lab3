@@ -108,11 +108,6 @@ Mat3 operator * (const Mat3 & first, const Mat3 & second) {
     result[6] = second.data[0] * first.data[6] + second.data[3] * first.data[7] + second.data[6] * first.data[8];
     result[7] = second.data[1] * first.data[6] + second.data[4] * first.data[7] + second.data[7] * first.data[8];
     result[8] = second.data[2] * first.data[6] + second.data[5] * first.data[7] + second.data[8] * first.data[8];
-    // for (int i = 0; i < 9; i++) std::cout << std::setw(4) << std::setfill(' ') << first.data[i] << ((i + 1) % 3 == 0 ? "\n" : " ");
-    // std::cout << "\n";
-    // for (int i = 0; i < 9; i++) std::cout << std::setw(4) << std::setfill(' ') << second.data[i] << ((i + 1) % 3 == 0 ? "\n" : " ");
-    // std::cout << "\n";
-    // for (int i = 0; i < 9; i++) std::cout << std::setw(4) << std::setfill(' ') << result[i] << ((i + 1) % 3 == 0 ? "\n" : " ");
     return Mat3(result);
 }
 
