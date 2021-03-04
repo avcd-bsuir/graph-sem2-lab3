@@ -37,7 +37,7 @@ Vec3 operator / (const Vec3 & first, const float second);
 Vec3 operator /= (Vec3 & first, const float second);
 
 // Other
-double distance(Vec3 first, Vec3 second);
-bool lineIntersection(Vec3 a1, Vec3 a2, Vec3 b1, Vec3 b2, Vec3 & pos);
+double distance(Vec3, Vec3);
+bool lineIntersection(Vec3, Vec3, Vec3, Vec3, Vec3 &);
 
 #endif
