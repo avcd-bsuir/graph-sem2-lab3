@@ -8,6 +8,7 @@
 
 void drawLine(Engine *, double, double, double, double, Color, Color);
 void drawLine(Engine *, double, double, double, double, Color);
+void drawLine(Engine *, Vec3, Vec3, Color, Color);
 void drawLine(Engine *, Vec3, Vec3, Color);
 
 #endif

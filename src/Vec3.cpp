@@ -94,6 +94,16 @@ Vec3 operator /= (Vec3 & first, const float second) {
  * Other
  */
 
+double dot(Vec3 first, Vec3 second) {
+    return first.x * second.x + first.y * second.y + first.z * second.z;
+}
+
+Vec3 cross(Vec3 first, Vec3 second) {
+    return Vec3(first.y * second.z - first.z * second.y,
+                first.z * second.x - first.x * second.z,
+                first.x * second.y - first.y * second.x);
+}
+
 double distance(Vec3 first, Vec3 second) {
     return std::sqrt(std::pow(first.x - second.x, 2) + std::pow(first.y - second.y, 2) + std::pow(first.z - second.z, 2));
 }

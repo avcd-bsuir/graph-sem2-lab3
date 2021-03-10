@@ -37,6 +37,8 @@ Vec3 operator / (const Vec3 & first, const float second);
 Vec3 operator /= (Vec3 & first, const float second);
 
 // Other
+double dot(Vec3, Vec3);
+Vec3 cross(Vec3, Vec3);
 double distance(Vec3, Vec3);
 bool lineIntersection(Vec3, Vec3, Vec3, Vec3, Vec3 &);
 
