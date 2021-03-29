@@ -22,6 +22,7 @@
         { "path": "src/Engine.cpp", "flags": "", "binaries": "" },
         { "path": "src/Mat3.cpp", "flags": "", "binaries": "" },
         { "path": "src/primitives.cpp", "flags": "", "binaries": "" },
+        { "path": "src/Shape.cpp", "flags": "", "binaries": "" },
         { "path": "src/utils.cpp", "flags": "", "binaries": "" },
         { "path": "src/Vec3.cpp", "flags": "", "binaries": "" }
     ],

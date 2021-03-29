@@ -41,7 +41,7 @@ int main(int argc, char* args[]) {
         engine.clear();
 
         SDL_GetMouseState(&x, &y);
-        drawLine(&engine, WIDTH / 2, HEIGHT / 2, x, y, Color(255, 0, 0), Color(0, 255, 0), 0xF0F0F0F0);
+        drawLine(&engine, WIDTH / 2, HEIGHT / 2, x, y, Color(255, 0, 0), Color(0, 255, 0), 0xFF00FF00);
 
         engine.draw();
         SDL_Delay(16);

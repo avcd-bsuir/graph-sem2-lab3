@@ -5,10 +5,12 @@
         "flags": "-std=c++17 -static-libstdc++ -static-libgcc",
         "include_path": [
             "include/",
-            "third-party/toolbox/"
+            "third-party/toolbox/",
+            "C:\\MinGW\\include"
         ],
         "library_path": [
-            "lib/"
+            "lib/",
+            "C:\\MinGW\\lib"
         ]
     },
     "main": {
@@ -22,6 +24,7 @@
         { "path": "src/Engine.cpp", "flags": "", "binaries": "" },
         { "path": "src/Mat3.cpp", "flags": "", "binaries": "" },
         { "path": "src/primitives.cpp", "flags": "", "binaries": "" },
+        { "path": "src/Shape.cpp", "flags": "", "binaries": "" },
         { "path": "src/utils.cpp", "flags": "", "binaries": "" },
         { "path": "src/Vec3.cpp", "flags": "", "binaries": "" }
     ],
