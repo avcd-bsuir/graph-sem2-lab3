@@ -17,6 +17,7 @@
 // #include "MakeString.hpp"
 #include "Mat3.hpp"
 #include "primitives.hpp"
+#include "Shape.hpp"
 #include "utils.hpp"
 #include "Vec3.hpp"
 
@@ -26,6 +27,8 @@
 int main(int argc, char* args[]) {
     Engine engine("Template", WIDTH, HEIGHT, Color(0x0));
     int x, y;
+
+    Shape s({Vec3(50, 50, 0), Vec3(150, 50, 0), Vec3(50, 100, 0)});
 
     while (!engine.shouldExit()) {
         SDL_Event event;
@@ -42,6 +45,7 @@ int main(int argc, char* args[]) {
 
         SDL_GetMouseState(&x, &y);
         drawLine(&engine, WIDTH / 2, HEIGHT / 2, x, y, Color(255, 0, 0), Color(0, 255, 0), 0xFF00FF00);
+        s.draw(&engine, Color(0, 0, 255));
 
         engine.draw();
         SDL_Delay(16);

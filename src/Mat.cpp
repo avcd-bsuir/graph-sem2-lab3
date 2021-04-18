@@ -1,87 +1,92 @@
 #include "Mat.hpp"
 
-Mat::Mat(int m, int n)
-{
+Mat::Mat(int m, int n) : m(m), n(n) {
     this->data.resize(m);
     for (int i = 0; i < m; i++)
         this->data[i].resize(n);
 }
 
-Mat::Mat(std::vector<std::vector<double>> data)
-{
+Mat::Mat(int m, int n, std::vector<std::vector<double>> data) : m(m), n(n) {
+    data.resize(m);
+    for (int i = 0; i < m; i++)
+        data[i].resize(n);
     this->data = data;
 }
 
-Mat::~Mat()
-{
+Mat::~Mat() {
 }
 
-double Mat::determinant()
-{
-    void getMatrixWithoutRowAndCol(int size, int row, int col, std::vector<std::vector<double>> matrix)
-    {
-        int offsetRow = 0; //Смещение индекса строки в матрице
-        int offsetCol = 0; //Смещение индекса столбца в матрице
-        for (int i = 0; i < size - 1; i++)
-        {
-            //Пропустить row-ую строку
-            if (i == row)
-            {
-                offsetRow = 1; //Как только встретили строку, которую надо пропустить, делаем смещение для исходной матрицы
-            }
+double Mat::determinant() {
+//     void getMatrixWithoutRowAndCol(int size, int row, int col, std::vector<std::vector<double>> matrix)
+//     {
+//         int offsetRow = 0; //Смещение индекса строки в матрице
+//         int offsetCol = 0; //Смещение индекса столбца в матрице
+//         for (int i = 0; i < size - 1; i++)
+//         {
+//             //Пропустить row-ую строку
+//             if (i == row)
+//             {
+//                 offsetRow = 1; //Как только встретили строку, которую надо пропустить, делаем смещение для исходной матрицы
+//             }
+//
+//             offsetCol = 0; //Обнулить смещение столбца
+//             for (int j = 0; j < m - 1; j++)
+//             {
+//                 //Пропустить col-ый столбец
+//                 if (j == col)
+//                 {
+//                     offsetCol = 1; //Встретили нужный столбец, проускаем его смещением
+//                 }
+//
+//                 matrix[i][j] = this->data[i + offsetRow][j + offsetCol];
+//             }
+//         }
+//     }
+    auto determinant = [&](Mat matrix) {
+        if (matrix.m != matrix.n)
+            throwError("ComputationError", "Determinant of non-square matrix can't be found");
 
-            offsetCol = 0; //Обнулить смещение столбца
-            for (int j = 0; j < m - 1; j++)
-            {
-                //Пропустить col-ый столбец
-                if (j == col)
-                {
-                    offsetCol = 1; //Встретили нужный столбец, проускаем его смещением
-                }
-
-                matrix[i][j] = this->data[i + offsetRow][j + offsetCol];
-            }
-        }
-    }
-
-    double matrixDet
-    {
-        double m = this->data.size();
-        double n = this->data[0].size();
-        if (m != n)
-            return -6969696969;
-        else
-        {
-            int det = 0;
-            int degree = 1; // (-1)^(1+j) из формулы определителя
-            //Условие выхода из рекурсии
-            switch (m)
-            {
-            case 1:
-                return this->data[0][0];
-                break;
-
-            case 2:
-                return this->data[0][0] * this->data[1][1] - this->data[0][1] * this->data[1][0];
-                break;
-
-            default:
-                std::vector<std::vector<double>> matrix = data;
-                matrix.resize(m - 1);
-                for (int i = 0; i < m; i++)
-                    this->data[i].resize(n - 1);
-
-                for (int j = 0; j < m; j++)
-                {
-                    getMatrixWithoutRowAndCol(m, 0, j, matrix);
-                }
-                det = det + (degree * matrix[0][j] * matrixDet(matrix, m - 1));
-                break;
-            }
-        }
-        return det;
-    }
+    };
+//     double matrixDet
+//     {
+//         double m = this->data.size();
+//         double n = this->data[0].size();
+//         if (m != n)
+//             return -6969696969;
+//         else
+//         {
+//             int det = 0;
+//             int degree = 1; // (-1)^(1+j) из формулы определителя
+//             //Условие выхода из рекурсии
+//             switch (m)
+//             {
+//             case 1:
+//                 return this->data[0][0];
+//                 break;
+//
+//             case 2:
+//                 return this->data[0][0] * this->data[1][1] - this->data[0][1] * this->data[1][0];
+//                 break;
+//
+//             default:
+//                 std::vector<std::vector<double>> matrix = data;
+//                 matrix.resize(m - 1);
+//                 for (int i = 0; i < m; i++)
+//                     this->data[i].resize(n - 1);
+//
+//                 for (int j = 0; j < m; j++)
+//                 {
+//                     getMatrixWithoutRowAndCol(m, 0, j, matrix);
+//                 }
+//                 det = det + (degree * matrix[0][j] * matrixDet(matrix, m - 1));
+//                 break;
+//             }
+//         }
+//         return det;
+//     }
 }
+
+
 /*
 
     //Возвращает матрицу matrix без row-ой строки и col-того столбца, результат в newMatrix
@@ -153,77 +158,62 @@ void getMatrixWithoutRowAndCol(int **matrix, int size, int row, int col, int **n
 }
         */
 
-Mat Mat::inverse()
-{
-
+Mat Mat::inverse() {
 }
 
-/*
- * Comparing
- */
-
-bool operator==(const Mat &first, const Mat &second)
-{
-    return first.data == second.data;
-}
-
-/*
- * Adding
- */
-
-Mat operator +(const Mat &first, const Mat &second)
-{
-    
-}
-
-Mat operator +=(Mat &first, const Mat &second)
-{
-}
-
-/*
- * Subtracting
- */
-
-Mat operator-(const Mat &first, const Mat &second)
-{
-}
-
-Mat operator-=(Mat &first, const Mat &second)
-{
-}
-
-/*
- * Multiplying
- */
-
-Mat operator*(const Mat &first, const Mat &second)
-{
-}
-
-Mat operator*=(Mat &first, const Mat &second)
-{
-}
-
-Mat operator*(const Mat &first, const double second)
-{
-}
-
-Mat operator*=(Mat &first, const double second)
-{
-}
-
-Mat operator*(const double second, const Mat &first)
-{
-}
-
-/*
- * Dividing
- */
-
-Mat operator/(const Mat &first, const double second)
-{
-}
-
-Mat operator/=(Mat &first, const double second)
-{
-}
+// /*
+//  * Comparing
+//  */
+//
+// bool operator==(const Mat &first, const Mat &second) {
+//     return first.data == second.data;
+// }
+//
+// /*
+//  * Adding
+//  */
+//
+// Mat operator +(const Mat &first, const Mat &second) {
+// }
+//
+// Mat operator +=(Mat &first, const Mat &second) {
+// }
+//
+// /*
+//  * Subtracting
+//  */
+//
+// Mat operator-(const Mat &first, const Mat &second) {
+// }
+//
+// Mat operator-=(Mat &first, const Mat &second) {
+// }
+//
+// /*
+//  * Multiplying
+//  */
+//
+// Mat operator*(const Mat &first, const Mat &second) {
+// }
+//
+// Mat operator*=(Mat &first, const Mat &second) {
+// }
+//
+// Mat operator*(const Mat &first, const double second) {
+// }
+//
+// Mat operator*=(Mat &first, const double second) {
+// }
+//
+// Mat operator*(const double second, const Mat &first) {
+// }
+//
+// /*
+//  * Dividing
+//  */
+//
+// Mat operator/(const Mat &first, const double second) {
+// }
+//
+// Mat operator/=(Mat &first, const double second) {
+// }
