@@ -16,7 +16,7 @@ Mat::Mat(int m, int n, std::vector<std::vector<double>> data) : m(m), n(n) {
 Mat::~Mat() {
 }
 
-double Mat::determinant() {
+// double Mat::determinant() {
 //     void getMatrixWithoutRowAndCol(int size, int row, int col, std::vector<std::vector<double>> matrix)
 //     {
 //         int offsetRow = 0; //Смещение индекса строки в матрице
@@ -42,11 +42,11 @@ double Mat::determinant() {
 //             }
 //         }
 //     }
-    auto determinant = [&](Mat matrix) {
-        if (matrix.m != matrix.n)
-            throwError("ComputationError", "Determinant of non-square matrix can't be found");
-
-    };
+//     auto determinant = [&](Mat matrix) {
+//         if (matrix.m != matrix.n)
+//             throwError("ComputationError", "Determinant of non-square matrix can't be found");
+//
+//     };
 //     double matrixDet
 //     {
 //         double m = this->data.size();
@@ -84,7 +84,7 @@ double Mat::determinant() {
 //         }
 //         return det;
 //     }
-}
+// }
 
 
 /*
@@ -158,8 +158,8 @@ void getMatrixWithoutRowAndCol(int **matrix, int size, int row, int col, int **n
 }
         */
 
-Mat Mat::inverse() {
-}
+// Mat Mat::inverse() {
+// }
 
 // /*
 //  * Comparing

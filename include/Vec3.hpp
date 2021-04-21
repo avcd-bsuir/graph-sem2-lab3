@@ -40,6 +40,7 @@ Vec3 operator /= (Vec3 & first, const float second);
 double dot(Vec3, Vec3);
 Vec3 cross(Vec3, Vec3);
 double distance(Vec3, Vec3);
+int pointOrientation(Vec3, Vec3, Vec3);
 bool lineIntersection(Vec3, Vec3, Vec3, Vec3, Vec3 &);
 
 #endif

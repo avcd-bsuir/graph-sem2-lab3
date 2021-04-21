@@ -108,6 +108,12 @@ double distance(Vec3 first, Vec3 second) {
     return std::sqrt(std::pow(first.x - second.x, 2) + std::pow(first.y - second.y, 2) + std::pow(first.z - second.z, 2));
 }
 
+int pointOrientation(Vec3 a, Vec3 b, Vec3 c) {
+	double val = (b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x-b.x);
+	if (val == 0) return 0; // Colinear
+	return (val < 0) ? 1 : -1; // 1 - Right; -1 - Left
+}
+
 bool lineIntersection(Vec3 a1, Vec3 a2, Vec3 b1, Vec3 b2, Vec3 & pos) {
     double d = (a2.x - a1.x) * (b1.y - b2.y) - (b1.x - b2.x) * (a2.y - a1.y);
     if (d == 0)

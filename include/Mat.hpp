@@ -14,8 +14,8 @@ class Mat {
         Mat(int, int, std::vector<std::vector<double>>);
         ~Mat();
 
-        double determinant();
-        Mat inverse();
+        // double determinant();
+        // Mat inverse();
 };
 
 // // Comparing
